@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "187035066448",
+    "firebase_url": "https://know-your-customer-8ba20.firebaseio.com",
+    "project_id": "know-your-customer-8ba20",
+    "storage_bucket": "know-your-customer-8ba20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187035066448:android:4b06a59c503dc471407155",
+        "android_client_info": {
+          "package_name": "com.isaiah.KYC"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187035066448-p98rbmk0gvp9l611t7q8m2e7igokpfc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIn-f2hE-l18RJYIOM4hkewZ43_k82hI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187035066448-p98rbmk0gvp9l611t7q8m2e7igokpfc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
