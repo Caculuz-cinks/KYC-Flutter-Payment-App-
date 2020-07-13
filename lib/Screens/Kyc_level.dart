@@ -56,6 +56,10 @@ class _KycLevelState extends State<KycLevel>
     });
   }
 
+  Widget builder() {
+    return getAndListenCollection();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -89,7 +93,7 @@ class _KycLevelState extends State<KycLevel>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            getAndListenCollection(),
+            builder(),
             SizedBox(
               height: 100,
             ),
