@@ -135,12 +135,13 @@ class _Level1State extends State<Level1> {
             height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _passport == null
                   ? RaisedButton(
                       child: Text('Choose Passport'),
                       onPressed: choosePassport,
-                      color: Colors.cyan,
+                      color: Colors.blue,
                     )
                   : Container(
                       child: Text('Passport Uploaded'),
@@ -158,12 +159,13 @@ class _Level1State extends State<Level1> {
             style: TextStyle(fontSize: 15),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _utility == null
                   ? RaisedButton(
                       child: Text('Choose Utility Bill'),
                       onPressed: chooseUtility,
-                      color: Colors.cyan,
+                      color: Colors.blue,
                     )
                   : Container(
                       child: Text('Utility Bill Uploaded'),

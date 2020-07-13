@@ -146,7 +146,7 @@ class _SignupState extends State<Signup> {
                   contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   hintText: "Phone Number",
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(32.0))),
+                      borderRadius: BorderRadius.circular(32.0))), 
             ),
             SizedBox(
               height: 40,

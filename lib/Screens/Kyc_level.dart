@@ -93,7 +93,10 @@ class _KycLevelState extends State<KycLevel>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            builder(),
+            Text(
+              'KYC Level: 0',
+              style: TextStyle(fontSize: 35),
+            ),
             SizedBox(
               height: 100,
             ),
