@@ -5,7 +5,7 @@ final _fireStore = Firestore.instance;
 
 class UserManagement {
   storeNewUser(user, passportUrl, utilityUrl, bool status) async {
-    await _fireStore.collection('users').add({
+    await _fireStore.collection('users').document(user.uid).setData({
       'email': user.email,
       'passportUrl': passportUrl,
       'uid': user.uid,

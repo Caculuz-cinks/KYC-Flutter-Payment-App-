@@ -1,8 +1,10 @@
+import 'package:KYC/Model/Kyc_level_model.dart';
 import 'package:KYC/components/rounded_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:provider/provider.dart';
 
 final _fireStore = Firestore.instance;
 
@@ -16,7 +18,10 @@ class _KycLevelState extends State<KycLevel>
   AnimationController controller;
   FirebaseAuth _auth = FirebaseAuth.instance;
 
+  KYCModel kycModel = KYCModel();
+
   FirebaseUser loggedinuser;
+  bool status;
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -28,42 +33,34 @@ class _KycLevelState extends State<KycLevel>
     }
   }
 
-  Stream myStream;
-
-  getAndListenCollection() {
-    myStream = Firestore.instance
+  getAndListenCollection() async {
+    Firestore.instance
         .collection('users')
         .document(loggedinuser.uid)
-        .snapshots();
-  }
+        .snapshots()
+        .listen((DocumentSnapshot documentSnapshot) {
+      Map<String, dynamic> firestoreInfo = documentSnapshot.data;
 
-  Widget myStreamBuilder(context) {
-    return StreamBuilder(
-        stream: myStream,
-        builder: (context, snapShot) {
-          return snapShot.hasData
-              ? Container(
-                  child: Text(
-                    '${snapShot.data.documents[0].data['status']}',
-                    style: TextStyle(
-                        color: snapShot.data.documents[0].data['status'] == true
-                            ? Colors.green
-                            : Colors.red),
-                  ),
-                )
-              : Container(
-                  child: Text('No Data'),
-                );
-        });
+      setState(() {
+        status = firestoreInfo['status'];
+      });
+      if (status == true) {
+        kycModel.updateKycLevel();
+        return Text(
+          'KYC Level: ${kycModel.kycLevel}',
+          style: TextStyle(fontSize: 50),
+        );
+      } else {
+        Text('KYC Level: 0');
+      }
+    });
   }
-
-  int kycLevel = 0;
 
   @override
   void initState() {
     super.initState();
     getCurrentUser();
-    getAndListenCollection();
+
     controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 10),
@@ -83,6 +80,8 @@ class _KycLevelState extends State<KycLevel>
 
   @override
   Widget build(BuildContext context) {
+    var model = Provider.of<KYCModel>(context, listen: true);
+
     final percentage = controller.value * 100;
     return Scaffold(
       body: Padding(
@@ -90,7 +89,7 @@ class _KycLevelState extends State<KycLevel>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            myStreamBuilder(context),
+            getAndListenCollection(),
             SizedBox(
               height: 100,
             ),

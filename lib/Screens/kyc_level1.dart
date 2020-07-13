@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:KYC/Model/Kyc_level_model.dart';
 import 'package:KYC/Services/email_service.dart';
 import 'package:KYC/components/rounded_button.dart';
 import 'package:flutter/foundation.dart';
@@ -13,6 +14,7 @@ import 'package:KYC/Services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:KYC/Services/user_management.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 final _fireStore = Firestore.instance;
 
@@ -34,6 +36,7 @@ class _Level1State extends State<Level1> {
   FirebaseUser loggedinuser;
   bool documentStatus = false;
   File fileName;
+  bool status;
 
   Future choosePassport() async {
     final file = await FilePicker.getFile();
@@ -107,6 +110,7 @@ class _Level1State extends State<Level1> {
   @override
   void initState() {
     super.initState();
+
     getCurrentUser();
   }
 
