@@ -3,7 +3,7 @@ import 'package:mailer/smtp_server.dart'; //For creating the SMTP Server
 
 class EmailService {
   String username = 'iadeleke01@gmail.com';
-  String password = 'Jackiebozz';
+  String password = 'xxxxxxx';
   Future<void> mail(String email) async {
     final smtpServer = gmail(username, password);
     // Creating the Gmail server
